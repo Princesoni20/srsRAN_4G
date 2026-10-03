@@ -1,0 +1,41 @@
+digraph LTE_System_Map {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.5, ranksep=0.8];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Arial",
+    fontsize=14,
+    color="#2C3E50",
+    fillcolor="#ECF0F1"
+  ];
+
+  edge [
+    fontname="Arial",
+    fontsize=11,
+    color="#34495E",
+    penwidth=1.5,
+    arrowsize=0.8
+  ];
+
+  UE [label="UE\n(User Equipment)", fillcolor="#D6EAF8"];
+  eNB [label="eNB\n(E-UTRAN)", fillcolor="#D5F5E3"];
+
+  subgraph cluster_epc {
+    label="EPC (Evolved Packet Core)";
+    fontname="Arial";
+    fontsize=15;
+    color="#7F8C8D";
+
+    MME [label="MME", fillcolor="#F9E79F"];
+    SGW [label="S-GW", fillcolor="#FADBD8"];
+    PGW [label="P-GW", fillcolor="#FADBD8"];
+    HSS [label="HSS", fillcolor="#E8DAEF"];
+  }
+
+  UE -> eNB [label=" Uu "];
+  eNB -> MME [label=" S1-MME\n(S1AP) "];
+  eNB -> SGW [label=" S1-U\n(GTP-U) "];
+  SGW -> PGW [label=" User Plane "];
+  MME -> HSS [label=" Subscriber Data ", style=dashed];
+}
